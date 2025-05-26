@@ -61,25 +61,38 @@
             color: #1a237e;
             pointer-events: none;
         }
-        ol { 
-            counter-reset: item;
+        /* Estilo para listas numeradas */
+        ol.questions {
+            counter-reset: question-counter;
             padding-left: 20px;
+            list-style-type: none;
         }
-        ol li { 
-            display: block;
+        ol.questions > li {
+            counter-increment: question-counter;
             margin-bottom: 15px;
+            position: relative;
         }
-        ol li:before {
-            content: counters(item, ".") ". ";
-            counter-increment: item;
+        ol.questions > li:before {
+            content: counter(question-counter) ".";
+            position: absolute;
+            left: -20px;
             font-weight: bold;
             color: #1a237e;
+        }
+        /* Estilo para opções sem numeração */
+        .options-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .option {
+            display: block;
+            margin-bottom: 8px;
         }
         .question {
             font-weight: bold;
             color: #2c3e50;
             display: block;
-            margin: 15px 0;
+            margin: 15px 0 10px 0;
         }
         .footer {
             text-align: center;
@@ -104,14 +117,7 @@
             z-index: 9999;
             background: transparent;
         }
-        .option {
-        list-style: none;
-        padding-left: 0;
-    }
-    .option::before {
-        display: none;
-    }
-</style>
+    </style>
 </head>
 <body>
     <div class="no-copy" oncontextmenu="return false"></div>
@@ -132,7 +138,7 @@
 
         <h2>Parte 1: Verdadeiro ou Falso (5 Perguntas)</h2>
         <p>Leia cada afirmação e indique se é <strong>Verdadeira (V)</strong> ou <strong>Falsa (F)</strong> de acordo com as normas.</p>
-        <ol>
+        <ol class="questions">
             <li><span class="question">Um oficial de polícia pode entrar numa propriedade privada sem mandado se houver suspeita de atividade criminosa iminente e sem autorização do proprietário.</span></li>
             <li><span class="question">É permitido o uso de força letal em resposta a um civil desarmado que esteja a resistir à prisão, mas não representa uma ameaça imediata.</span></li>
             <li><span class="question">Todas as ações de um oficial em serviço devem ser registadas e justificadas, incluindo o uso de força e paragens de veículos.</span></li>
@@ -142,10 +148,10 @@
 
         <h2>Parte 2: Escolha Múltipla (4 Perguntas)</h2>
         <p>Escolha a opção que melhor responde a cada pergunta, de acordo com as normas.</p>
-        <ol start="6">
+        <ol class="questions" start="6">
             <li>
                 <span class="question">Qual das seguintes opções representa uma <strong>violência de protocolo</strong> por parte de um oficial de polícia?</span>
-                <ul>
+                <ul class="options-list">
                     <li class="option">a) Deter um suspeito baseado numa denúncia anónima.</li>
                     <li class="option">b) Utilizar linguagem rude ou insultos contra um cidadão durante uma abordagem.</li>
                     <li class="option">c) Efetuar uma perseguição a alta velocidade por uma área movimentada.</li>
@@ -154,7 +160,7 @@
             </li>
             <li>
                 <span class="question">De acordo com as normas, em que situação um oficial de polícia <strong>NÃO</strong> deve usar o seu bastão extensível?</span>
-                <ul>
+                <ul class="options-list">
                     <li class="option">a) Para defender-se de um ataque físico iminente.</li>
                     <li class="option">b) Para controlar um suspeito que está a resistir ativamente à prisão.</li>
                     <li class="option">c) Para intimidar um cidadão que está a filmar uma abordagem policial.</li>
@@ -163,7 +169,7 @@
             </li>
             <li>
                 <span class="question">Qual é a principal função de um oficial de polícia no Crystal Roleplay?</span>
-                <ul>
+                <ul class="options-list">
                     <li class="option">a) Garantir a ordem pública e fazer cumprir as leis.</li>
                     <li class="option">b) Maximizar o número de prisões e multas.</li>
                     <li class="option">c) Competir com outros departamentos por recursos.</li>
@@ -172,7 +178,7 @@
             </li>
             <li>
                 <span class="question">O que deve um oficial de polícia fazer se um cidadão o filmar durante uma intervenção?</span>
-                <ul>
+                <ul class="options-list">
                     <li class="option">a) Exigir que a gravação seja imediatamente apagada.</li>
                     <li class="option">b) Ignorar a filmagem e prosseguir com a intervenção normalmente.</li>
                     <li class="option">c) Apreender o dispositivo de gravação do cidadão.</li>
