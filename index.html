@@ -376,47 +376,47 @@
     </div>
 
     <script>
-        // Inicializa o EmailJS (substitua com suas credenciais)
-        emailjs.init('w_N4oJ960VgSnclDW');
+    // Inicializa o EmailJS com sua Public Key
+    emailjs.init('w_N4oJ960VgSnclDW'); // ← Esta é a chave mais importante!
+    
+    document.getElementById('test-form').addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        document.getElementById('test-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Coleta todas as respostas
-            const formData = new FormData(this);
-            const responses = {};
-            
-            for (let [key, value] of formData.entries()) {
-                responses[key] = value;
-            }
-            
-            // Prepara o email
-            const emailParams = {
-                candidate_name: responses['candidate-name'],
-                candidate_email: responses['candidate-email'],
-                q1: responses['q1'],
-                q2: responses['q2'],
-                q3: responses['q3'],
-                q4: responses['q4'],
-                q5: responses['q5'],
-                q6: responses['q6'],
-                q7: responses['q7'],
-                q8: responses['q8'],
-                q9: responses['q9'],
-                q10: responses['q10'],
-                submission_date: new Date().toLocaleString()
-            };
-            
-            // Envia o email (substitua com seu template ID e service ID)
-            emailjs.send('service_6u76dxo', 'template_2joqmrn', emailParams)
-                .then(function(response) {
-                    alert('Teste enviado com sucesso! Obrigado por sua participação.');
-                    document.getElementById('test-form').reset();
-                }, function(error) {
-                    alert('Ocorreu um erro ao enviar o teste. Por favor, tente novamente mais tarde.');
-                    console.error('EmailJS Error:', error);
-                });
-        });
-    </script>
+        // Coleta todas as respostas
+        const formData = new FormData(this);
+        const responses = {};
+        
+        for (let [key, value] of formData.entries()) {
+            responses[key] = value;
+        }
+        
+        // Prepara o email
+        const emailParams = {
+            candidate_name: responses['candidate-name'],
+            candidate_email: responses['candidate-email'],
+            q1: responses['q1'],
+            q2: responses['q2'],
+            q3: responses['q3'],
+            q4: responses['q4'],
+            q5: responses['q5'],
+            q6: responses['q6'],
+            q7: responses['q7'],
+            q8: responses['q8'],
+            q9: responses['q9'],
+            q10: responses['q10'],
+            submission_date: new Date().toLocaleString()
+        };
+        
+        // Envia o email (use seus IDs reais)
+        emailjs.send('service_6u76dxo', 'template_2joqmrn', emailParams)
+            .then(function(response) {
+                alert('Teste enviado com sucesso! Obrigado por sua participação.');
+                document.getElementById('test-form').reset();
+            }, function(error) {
+                alert('Ocorreu um erro ao enviar o teste. Por favor, tente novamente mais tarde.');
+                console.error('EmailJS Error:', error);
+            });
+    });
+</script>
 </body>
 </html>
